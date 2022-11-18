@@ -1,0 +1,183 @@
+@media screen and (max-width: 600px) {
+  .body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logo_container {
+    position: absolute;
+    width: 228px;
+    height: 48px;
+    left: 46px;
+    top: 32px;
+  }
+
+  .logo {
+    width: 228px;
+    height: 48px;
+    left: 46px;
+    top: 32px;
+  }
+
+  .login_container {
+    background-color: white;
+    width: 240px;
+    left: 16px;
+    top: 106px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 28px 24px 40px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login_window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 32px;
+  }
+
+  .login_text {
+    padding: 0;
+    gap: 4px;
+    width: 240px;
+    height: 80px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+
+  .login_text h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(29, 31, 38, 0.8);
+    text-align: center;
+  }
+
+  .login_text p {
+    font-size: 14px;
+    color: rgba(29, 31, 38, 0.8);
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .form input[type='email'] {
+    padding: 16px 20px 16px 20px;
+    border: 1px solid rgba(165, 174, 189, 0.2);
+    border-radius: 12px;
+    background-color: rgba(238, 238, 238, 0.5);
+    font-weight: semibold;
+    width: 200px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #A5AEBD;
+    height: 18px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .form input[type='password'] {
+    padding: 16px 20px 16px 20px;
+    border: 1px solid rgba(165, 174, 189, 0.2);
+    border-radius: 12px;
+    background-color: rgba(238, 238, 238, 0.5);
+    font-weight: semibold;
+    width: 200px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #A5AEBD;
+    height: 18px;
+    border: 1px solid #f0f0f0;
+    margin-top: 16px;
+  }
+
+  .form input:focus {
+    outline: none;
+    border: 2px solid #2F7BFF;
+  }
+
+  .error {
+    border: 2px solid #FF0044;
+  }
+
+  .error-text {
+    color: #FF0044;
+    padding-top: 10px;
+  }
+
+  ::placeholder {
+    color: #A5AEBD;
+    font-weight: normal;
+  }
+
+  .login_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .form button {
+    padding: 13px 28px;
+    gap: 8px;
+    width: 180px;
+    height: 48;
+    border: 1px solid rgba(238, 238, 238, 0.8);
+    border-radius: 16px;
+    background-color: rgba(238, 238, 238, 0.5);
+    font-weight: normal;
+    background: #2F7BFF;
+    box-shadow: 0px 8px 24px -4px rgba(47, 123, 255, 0.5);
+    border-radius: 12px;
+    color: white;
+    font-size: small;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form button span {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+
+  .form button:hover {
+    background: #2F7BFF;
+    box-shadow: 0px 8px 24px -4px rgba(47, 123, 255, 0.6);
+  }
+
+  .form button:active {
+    background: #0057FF;
+    border-radius: 12px;
+  }
+
+  .form button span {
+    margin-left: 5px;
+    font-size: large;
+  }
+}
