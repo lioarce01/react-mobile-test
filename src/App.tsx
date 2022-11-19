@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./assets/logo.svg";
 import logout from './assets/logout.svg'
 import { login } from "./api";
@@ -11,12 +11,13 @@ function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors }} = useForm<Inputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-  const handleLogin = async (user: User) : Promise<void> => {
+  const handleLogin = async (user: User) => { 
     const response = await login(user);
     if(response.error) {
       setError(response.error);
+      alert(response.error);
     } else {
       setLoading(true);
       setTimeout(() => {
@@ -26,7 +27,7 @@ function App() {
     }
   };
 
-  const handleLogout = () : void => {
+  const handleLogout = () => {
     setUser(null);
   };
 
@@ -65,27 +66,28 @@ function App() {
           </div>
 
           <form className='form' onSubmit={handleSubmit(handleLogin)}>
-            <input type="email" placeholder='Email' {...register("email", { pattern: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi })} className="input_form" />
-            {errors.email && <span role="alert" className='error-text'>Enter a valid email</span>}
-            
-            <input type="password" placeholder='Password' {...register('password', { required: true })} className="input_form"/>
-            {errors.password && <span role="alert" className='error-text'>Enter a valid password</span>}
+
+          <input type="email" placeholder='Email' className={errors.email ? 'error' : ''} {...register('email', { required: true, pattern: /^\S+@\S+$/i })} onChange={() => setError(undefined)} />
+            {errors.email && <span className='error-text'>Incorrect email</span>}
+
+          <input type="password" placeholder='Password' className={errors.password ? 'error' : ''} {...register('password', { required: true })} onChange={() => setError(undefined)} />
+            {errors.password && <span className='error-text'>Incorrect password</span>}
 
             <div className="login_btn">
               {
                 loading ? ( 
-                  <button type="submit" className="loading_btn">
+                  <button className={loading ? 'loading_btn' : ''}>
                     <img src={loader} alt='loader' className='loader'  />
                   </button>
-                ) : (
-                  <button type="submit">
+                  
+                ) : //si las credenciales son incorrectas se muestra el error en el input
+                <button type="submit">
                     <span>Login</span>
                     <img src={loginSvg}
                       alt="login"
                       className='login_img'
                     />
                   </button>
-                )
               }
             </div>
           </form>

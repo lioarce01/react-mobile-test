@@ -186,52 +186,62 @@ body {
     padding: 0px;
   }
 
-  .form input[type='email'] {
-    padding: 16px 20px 16px 20px;
-    border: 1px solid rgba(165, 174, 189, 0.2);
-    border-radius: 12px;
+  .form input[type="email"] {
+    padding: 12px 12px 12px 16px;
+      width: 200px;
+    height: 48;
+    border: 1px solid rgba(238, 238, 238, 0.8);
+    border-radius: 10px;
     background-color: rgba(238, 238, 238, 0.5);
-    font-weight: semibold;
-    width: 200px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #070707;
-    height: 18px;
-    border: 2px solid #f0f0f0;
-  }
-
-  .form input[type='password'] {
-    padding: 16px 20px 16px 20px;
-    border: 1px solid rgba(165, 174, 189, 0.2);
-    border-radius: 12px;
-    background-color: rgba(238, 238, 238, 0.5);
-    font-weight: semibold;
-    width: 200px;
-    font-size: 16px;
-    line-height: 24px;
-    color: #000000;
-    height: 18px;
-    border: 2px solid #f0f0f0;
-    margin-top: 16px;
-  }
-
-  .form input:focus {
+    font-weight: normal;
+    flex: none;
+    flex-grow: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     outline: none;
-    border: 2px solid #2F7BFF;
   }
 
-  .error {
-    border: 2px solid #FF0044;
-  }
+.form input[type="password"] {
+  padding: 12px 12px 12px 16px;
+  width: 200px;
+  height: 48;
+  border: 1px solid rgba(238, 238, 238, 0.8);
+  border-radius: 10px;
+  background-color: rgba(238, 238, 238, 0.5);
+  font-weight: normal;
+  flex: none;
+  flex-grow: 0;
+  font-size: 14px;
+  display: flex;
+  margin-top: 25px;
+  outline: none;
+}
+    
+.input_error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
   .error-text {
     color: #FF0044;
-    padding-top: 10px;
+    padding-top: 8px;
+      font-size: small;
   }
 
   ::placeholder {
     color: #A5AEBD;
     font-weight: normal;
+  } 
+
+  .form input:active {
+    border: 2px solid #2F7BFF;
+  }
+
+  .form input:hover {
+    border: 2px solid #2F7BFF;
   }
 
   .login_btn {
@@ -261,6 +271,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    outline: none;
   }
 
   .form button span {
@@ -281,11 +292,10 @@ body {
 
   .form button span {
     margin-left: 5px;
-    font-size: large;
   }
 
   .loading_btn {
-    background: #082255;
+    background: #0057FF;
     border-radius: 12px;
   }
 
