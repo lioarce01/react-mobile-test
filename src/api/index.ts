@@ -1,10 +1,6 @@
+import { ILogin } from './types';
 
-interface Login {
-  email: string;
-  password: string;
-}
-
-export function login(data: Login): Promise<any> {
+export async function login(data: ILogin): Promise<any> {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (data.email === "elon@mercdev.com" && data.password === "twitter") {
