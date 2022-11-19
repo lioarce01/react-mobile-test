@@ -13,7 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [borderInput, setBorderInput] = useState("rgba(238, 238, 238, 0.8)");
   const [text, setText] = useState("");
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<Inputs>();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<Inputs>(); 
 
   const handleLogin = async (user: User) => { 
     const response = await login(user);
@@ -22,7 +22,6 @@ function App() {
       setError(response.error);
       setBorderInput("red");
       setText("Invalid email or password");
-      alert("Invalid email or password");
     } else {
       setLoading(true);
       setTimeout(() => {
@@ -48,6 +47,12 @@ function App() {
       setText("");
     }
   }, [watch]);
+
+  //change border color input on every change input
+  const handleInput = () => {
+    setBorderInput("rgba(238, 238, 238, 0.8)");
+    setText("");
+  };
 
   console.log(errors);
 
@@ -87,11 +92,13 @@ function App() {
 
           <form className='form' onSubmit={handleSubmit(handleLogin)}>
 
-          <input type="email" placeholder='Email' {...register('email', { pattern: /^\S+@\S+$/i })} style={{ borderColor: borderInput}} />
+          <input type="email" placeholder='Email' {...register('email', { pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ })} style={{ borderColor: borderInput}} onChange={handleInput}/>
           <span className="error-text">{text}</span>
+          {errors.email && <span className="error-text">Invalid email</span>}
 
-          <input type="password" placeholder='Pass  word' {...register('password')} style={{ borderColor: borderInput}} />
+          <input type="password" placeholder='Password' {...register('password')} style={{ borderColor: borderInput}} onChange={handleInput}/>
           <span className="error-text">{text}</span>
+          { errors.password && <span className="error-text">{error}</span> }
 
             <div className="login_btn">
               {
@@ -101,7 +108,7 @@ function App() {
                   </button>
                   
                 ) : (
-                <button type="submit">
+                <button type="submit" disabled={errors.email || errors.password ? true : false}>
                     <span>Login</span>
                     <img src={loginSvg}
                       alt="login"
