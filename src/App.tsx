@@ -22,7 +22,7 @@ function App() {
       setError(response.error);
       setBorderInput("red");
       setText("Invalid email or password");
-      return;
+      alert("Invalid email or password");
     } else {
       setLoading(true);
       setTimeout(() => {
@@ -47,7 +47,7 @@ function App() {
       setBorderInput("rgba(238, 238, 238, 0.8)");
       setText("");
     }
-  }, [watch, user]);
+  }, [watch]);
 
   console.log(errors);
 
