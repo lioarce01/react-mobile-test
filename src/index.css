@@ -190,7 +190,7 @@ body {
     padding: 12px 12px 12px 16px;
       width: 200px;
     height: 48;
-    border: 1px solid rgba(238, 238, 238, 0.8);
+    border: 2px solid rgba(238, 238, 238, 0.8);
     border-radius: 10px;
     background-color: rgba(238, 238, 238, 0.5);
     font-weight: normal;
@@ -207,7 +207,7 @@ body {
   padding: 12px 12px 12px 16px;
   width: 200px;
   height: 48;
-  border: 1px solid rgba(238, 238, 238, 0.8);
+  border: 2px solid rgba(238, 238, 238, 0.8);
   border-radius: 10px;
   background-color: rgba(238, 238, 238, 0.5);
   font-weight: normal;
@@ -220,7 +220,7 @@ body {
 }
     
 .input_error {
-  color: red;
+  color: #FF0044;
   font-size: 12px;
   margin-top: 5px;
 }
@@ -292,11 +292,6 @@ body {
 
   .form button span {
     margin-left: 5px;
-  }
-
-  .loading_btn {
-    background: #0057FF;
-    border-radius: 12px;
   }
 
   .loader {

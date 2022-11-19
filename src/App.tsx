@@ -9,20 +9,28 @@ import loader from './assets/loader.svg'
 
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const [borderInput, setBorderInput] = useState("rgba(238, 238, 238, 0.8)");
+  const [text, setText] = useState("");
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<Inputs>();
 
   const handleLogin = async (user: User) => { 
     const response = await login(user);
+
     if(response.error) {
       setError(response.error);
-      alert(response.error);
+      setBorderInput("red");
+      setText("Invalid email or password");
+      return;
     } else {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setUser(response.data);
+        setError(null);
+        setBorderInput("rgba(238, 238, 238, 0.8)");
+        setText("");
       }, 1000);
     }
   };
@@ -30,6 +38,18 @@ function App() {
   const handleLogout = () => {
     setUser(null);
   };
+
+  useEffect(() => {
+    let email = watch("email");
+    let password = watch("password");
+
+    if(email === "" || password === "") {
+      setBorderInput("rgba(238, 238, 238, 0.8)");
+      setText("");
+    }
+  }, [watch, user]);
+
+  console.log(errors);
 
   return user ? (
     <div className='body'>
@@ -67,20 +87,20 @@ function App() {
 
           <form className='form' onSubmit={handleSubmit(handleLogin)}>
 
-          <input type="email" placeholder='Email' className={errors.email ? 'error' : ''} {...register('email', { required: true, pattern: /^\S+@\S+$/i })} onChange={() => setError(undefined)} />
-            {errors.email && <span className='error-text'>Incorrect email</span>}
+          <input type="email" placeholder='Email' {...register('email', { pattern: /^\S+@\S+$/i })} style={{ borderColor: borderInput}} />
+          <span className="error-text">{text}</span>
 
-          <input type="password" placeholder='Password' className={errors.password ? 'error' : ''} {...register('password', { required: true })} onChange={() => setError(undefined)} />
-            {errors.password && <span className='error-text'>Incorrect password</span>}
+          <input type="password" placeholder='Pass  word' {...register('password')} style={{ borderColor: borderInput}} />
+          <span className="error-text">{text}</span>
 
             <div className="login_btn">
               {
                 loading ? ( 
-                  <button className={loading ? 'loading_btn' : ''}>
-                    <img src={loader} alt='loader' className='loader'  />
+                  <button className="pressed" disabled={loading ? true : false}>
+                    <img src={loader} alt='loader' className='loader'/>
                   </button>
                   
-                ) : //si las credenciales son incorrectas se muestra el error en el input
+                ) : (
                 <button type="submit">
                     <span>Login</span>
                     <img src={loginSvg}
@@ -88,6 +108,7 @@ function App() {
                       className='login_img'
                     />
                   </button>
+                )
               }
             </div>
           </form>
